@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix UI</title>
+    <style>
+      /* I reset padding, margin, and box-sizing for all elements.
+         I leave the background color and font settings as-is to preserve the original look. */
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      /* I center the container in the viewport using fixed positioning.
+         This ensures that the entire layout remains centered regardless of screen size. */
+      .container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+      /* I reorganized the dialog’s CSS by grouping the positioning properties together,
+         then followed with layout (flex) and size/appearance properties.
+         This helps me (and anyone reading the code) understand the structure better without changing the output. */
+      .dialog {
+        /* Positioning: I want the dialog to be placed relative to the container's center,
+           then shifted downward by using a vertical translate. */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 115%);
+        
+        /* Layout: I use flex to distribute the inner items evenly and center them vertically. */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        /* Size & Appearance: I maintain the original dimensions and styling. */
+        width: 450px;
+        height: 95px;
+        border: 2px solid gray;
+        border-radius: 15px;
+        padding: 5px;
+      }
+      
+      /* I ensure the first dialog image fills the dialog’s full height while keeping a left margin for spacing. */
+      .dialog-img-item1 {
+        height: 100%;
+        width: auto;
+        margin-left: 10px;
+      }
+      
+      /* I adjust the second dialog image to be 70% of the dialog's height and give it a right margin for spacing. */
+      .dialog-img-item2 {
+        height: 70%;
+        width: auto;
+        margin-right: 10px;
+      }
+      
+      /* I limit the width of the text container to properly space it between the images. */
+      .dialog-text {
+        width: 57%;
+      }
+      
+      /* I keep the text color and spacing as in the original design. */
+      .dialog-text-item1 {
+        color: white;
+        margin-bottom: 5px;
+      }
+      .dialog-text-item2 {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <div class="backgroundimg">
+        <img src="./backgroundimg.jpg" alt="" class="backgroundimg-item" />
+      </div>
+      <div class="dialog">
+        <img src="./picindialog.png" alt="" class="dialog-img-item1" />
+        <div class="dialog-text">
+          <div class="dialog-text-item1">Stranger Things</div>
+          <div class="dialog-text-item2">Downloading...</div>
+        </div>
+        <img src="./gifindialog.gif" alt="" class="dialog-img-item2" />
+      </div>
+    </main>
+  </body>
+</html>

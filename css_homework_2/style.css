@@ -1,0 +1,91 @@
+/* Base styles for body to center the tweet card */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+  font-family: sans-serif;
+}
+
+/* Tweet container with specified background, border, padding, and rounded corners */
+.tweet {
+  background-color: #fff;
+  border: 1px solid #cfd9de;
+  border-radius: 16px;
+  padding: 12px;
+  width: 40vw;
+  display: flex;
+  gap: 12px;
+}
+
+/* Profile image: 48px fully rounded and ensures object-fit covers the container */
+.thumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Tweet content fills the remaining space */
+.tweet-content {
+  flex-grow: 1;
+}
+
+/* Header containing the name and metadata */
+.tweet-header {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  gap: 4px;
+}
+
+/* Name: bold, 15px sans-serif, with left padding */
+.name {
+  color: #000;
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 12px;
+}
+
+/* Metadata: 15px sans-serif, gray color */
+.metadata {
+  color: #71767b;
+  font-size: 15px;
+}
+
+/* Message: 15px sans-serif, dark color with top margin and left padding */
+.message {
+  color: #0f1419;
+  font-size: 15px;
+  margin-top: 2px;
+  padding-left: 12px;
+}
+
+/* Actions row: max-width of 425px and spaced evenly */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 425px;
+  margin-top: 8px;
+  padding-left: 12px;
+}
+
+/* Each action: icon and count aligned with a 4px gap */
+.action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Icon styling: 16px size (set in HTML) and specified color */
+.action svg {
+  color: #536471;
+}
+
+/* Action count text: 13px sans-serif and specified color */
+.action-count {
+  color: #536471;
+  font-size: 13px;
+}
