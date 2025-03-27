@@ -17,7 +17,4 @@ export class AppComponent implements DoCheck {
   increment() {
     this.counter++;
   }
-  checkRender() {
-    return Math.random();
-  }
 }
