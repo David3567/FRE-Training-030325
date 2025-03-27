@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 
 export interface Card {
   title: string;
@@ -12,7 +17,7 @@ export interface Card {
   standalone: false,
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit, AfterContentInit {
   /* 
   Here is an interview coding question, it looking for data transfer between component by using @Input and @Output in Angular,
   Find some resource to learn how to using @Input and @Output
@@ -22,6 +27,8 @@ export class AppComponent {
   the provided data should be transfer from the parent component to child component vis @Input
   the click event should be emit from child component to parent component @Output
   */
+
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ val
   title: string = 'hello angular';
   isdisabled: boolean = false;
   myid: number = 1234;
@@ -50,6 +57,20 @@ export class AppComponent {
       color: 'orange',
     },
   ];
+  cf;
+  // * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ lifecycle
+  constructor(cf: ChangeDetectorRef) {
+    this.cf = cf;
+  }
+
+  ngAfterContentInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  // * ~~~~~~~~~~~~~~~~ method
 
   toggle() {
     this.isdisabled = !this.isdisabled;
@@ -61,3 +82,15 @@ export class AppComponent {
     this.currentColor = color;
   }
 }
+
+// class Person {
+//   // name;
+//   // age;
+
+//   constructor(private name: string, public age: number) {
+//     // this.name = name;
+//     // this.age = age;
+
+//     console.log(this.name);
+//   }
+// }
