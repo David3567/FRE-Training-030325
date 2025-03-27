@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   standalone: false,
   templateUrl: './comp-b.component.html',
   styleUrl: './comp-b.component.css',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompBComponent {
   @Input() data!: string;
