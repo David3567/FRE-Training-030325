@@ -7,6 +7,7 @@ import { NgfortrackbyComponent } from './ngfortrackby/ngfortrackby.component';
 import { FormsModule } from '@angular/forms';
 import { CustomdirectiveComponent } from './customdirective/customdirective.component';
 import { CustomDirective } from './customdirective/custom.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { CustomDirective } from './customdirective/custom.directive';
     CustomdirectiveComponent,
     CustomDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
