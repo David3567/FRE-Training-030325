@@ -9,6 +9,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { BooklistComponent } from './components/booklist/booklist.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { BookService } from './services/book.service';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { WishListPageComponent } from './components/wish-list-page/wish-list-page.component';
+
+const routes: Routes = [
+  {
+    path: 'home', // lh:4200/home
+    component: HomeComponent,
+  },
+  {
+    path: 'wishlist', // lh:4200/wishlist
+    component: WishListPageComponent,
+  },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+];
 
 @NgModule({
   declarations: [
@@ -16,8 +36,16 @@ import { BookService } from './services/book.service';
     SearchComponent,
     BooklistComponent,
     WishlistComponent,
+    HomeComponent,
+    WishListPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+  ],
   // providers: [BookService],
   providers: [{ provide: BookService, useClass: BookService }],
   bootstrap: [AppComponent],

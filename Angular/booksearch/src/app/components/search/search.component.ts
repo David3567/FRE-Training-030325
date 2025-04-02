@@ -1,5 +1,11 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { fromEvent, mergeMap, Subscription, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  fromEvent,
+  mergeMap,
+  Subscription,
+  switchMap,
+} from 'rxjs';
 import { BookService } from '../../services/book.service';
 
 @Component({
@@ -20,7 +26,8 @@ export class SearchComponent {
     this.sbp.add(
       fromEvent(this.inputbox.nativeElement, 'input')
         .pipe(
-          switchMap((e) => {
+          debounceTime(1000),
+          mergeMap((e) => {
             return this.bookService.searchBook(this.bookname);
           })
         )

@@ -13,12 +13,18 @@ export class WishlistComponent {
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.bookService.wishlist$.subscribe((data) => {
+    // console.log('wishlist component: ', this.bookService.getwishlist);
+
+    this.bookService.wishes$.subscribe((data) => {
       this.wishlist = data;
     });
 
-    this.bookService.booklist$.subscribe((data) => {
+    this.bookService.books$.subscribe((data) => {
       console.log('from wishlist: ', data);
     });
   }
+
+  // addHardcode() {
+  //   this.bookService.wishes$.next(['hehe']);
+  // }
 }

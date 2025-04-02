@@ -1,6 +1,9 @@
 <p>booklist working!</p>
 <ul>
-  <li *ngFor="let book of booklist" (click)="addtowishList(book.name)">
+  <li
+    *ngFor="let book of bookService.books$ | async"
+    (click)="addtowishList(book.name)"
+  >
     {{ book.name }}
   </li>
 </ul>

@@ -1,25 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of, Subject, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  of,
+  Subject,
+  tap,
+} from 'rxjs';
 import { Book, BookSearchRes, ItemsEntity } from './book.interfaces';
 
 @Injectable()
 export class BookService {
-  private baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
-  booklist$ = new Subject<Book[]>();
-  wishlist: string[] = [];
-  wishlist$ = new Subject<string[]>();
+  private readonly baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+  // booklist$ = new Subject<Book[]>();
+  private booklist$ = new BehaviorSubject<Book[]>([]);
+  books$ = this.booklist$.asObservable();
 
-  get wishlistdata() {
-    // render();
-    return this.wishlist;
-  }
+  private wishlist$ = new BehaviorSubject<string[]>([]);
+  wishes$ = this.wishlist$.asObservable();
 
   constructor(private http: HttpClient) {}
 
   addtowishList(bookname: string) {
-    this.wishlist.push(bookname);
-    this.wishlist$.next(this.wishlist);
+    this.wishlist$.next([bookname, ...this.wishlist$.value]);
   }
 
   searchBook(bookname: string) {
@@ -40,6 +45,9 @@ export class BookService {
       tap((data: Book[]) => {
         console.log('from service: ', data);
         this.booklist$.next(data);
+      }),
+      catchError((e) => {
+        return of(e);
       })
     );
   }
