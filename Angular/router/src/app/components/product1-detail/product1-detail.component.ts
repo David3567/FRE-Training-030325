@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../services/product';
+import { switchMap } from 'rxjs';
+
+@Component({
+  standalone: false,
+  templateUrl: './product1-detail.component.html',
+})
+export class Product1DetailComponent implements OnInit {
+  product: Product | undefined;
+
+  constructor(
+    private _Activatedroute: ActivatedRoute,
+    private _router: Router,
+    private _productService: ProductService
+  ) {}
+
+  ngOnInit(): void {
+    // const id = this._Activatedroute.snapshot.params['id'];
+    // this._productService.getProduct(id).subscribe((data) => {
+    //   this.product = data;
+    // });
+
+    // this._Activatedroute.queryParams
+    this._Activatedroute.paramMap
+      .pipe(
+        switchMap((params) => {
+          const id = params.get('id') || 1;
+          console.log('id: ', params);
+          return this._productService.getProduct(+id);
+        })
+      )
+      .subscribe((data) => {
+        console.log('mark: ', data);
+        this.product = data;
+      });
+  }
+  // authentication and authorization
+}
